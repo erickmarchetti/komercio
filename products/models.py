@@ -7,6 +7,6 @@ class Product(models.Model):
     quantity = models.PositiveIntegerField()
     is_active = models.BooleanField(default=True)
 
-    user = models.ForeignKey(
+    seller = models.ForeignKey(
         "users.User", on_delete=models.CASCADE, related_name="products"
     )
