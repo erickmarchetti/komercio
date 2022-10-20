@@ -13,7 +13,7 @@ class ProductsView(generics.ListCreateAPIView):
     serializer_by_method = {"GET": ProductGeneralSerializer}
 
     serializer_class = ProductDetailsSerializer
-    queryset = Product.objects
+    queryset = Product.objects.all()
 
     def perform_create(self, serializer):
         serializer.save(seller=self.request.user)
@@ -27,4 +27,4 @@ class ProductsDetailsView(generics.RetrieveUpdateAPIView):
     permission_classes = [IsSellerOwnerOrReadOnly]
 
     serializer_class = ProductDetailsSerializer
-    queryset = Product.objects
+    queryset = Product.objects.all()

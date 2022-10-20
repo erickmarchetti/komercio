@@ -9,7 +9,7 @@ from .permissions import IsOwnerOfAccount
 
 
 class UserListCreateView(generics.ListCreateAPIView):
-    queryset = models.User.objects
+    queryset = models.User.objects.all()
     serializer_class = serializers.AccountSerializer
 
 
@@ -32,7 +32,7 @@ class LoginView(views.APIView):
 
 
 class UserListByNumView(generics.ListAPIView):
-    queryset = models.User.objects
+    queryset = models.User.objects.all()
     serializer_class = serializers.AccountSerializer
 
     def get_queryset(self):
@@ -44,7 +44,7 @@ class UserUpdateView(generics.UpdateAPIView):
     authentication_classes = [TokenAuthentication]
     permission_classes = [IsOwnerOfAccount]
 
-    queryset = models.User.objects
+    queryset = models.User.objects.all()
     serializer_class = serializers.AccountUpdateSerializer
 
 
@@ -52,5 +52,5 @@ class UserUpdateActivityView(generics.UpdateAPIView):
     authentication_classes = [TokenAuthentication]
     permission_classes = [IsAdminUser]
 
-    queryset = models.User.objects
+    queryset = models.User.objects.all()
     serializer_class = serializers.AccountUpdateActivitySerializer
