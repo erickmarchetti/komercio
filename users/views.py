@@ -24,7 +24,7 @@ class LoginView(views.APIView):
         serializer.is_valid(raise_exception=True)
 
         user = authenticate(**serializer.validated_data)
-        print(user, type(user))
+
         if not user:
             return views.Response(
                 {"detail": "invalid username or password"},
