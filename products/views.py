@@ -1,12 +1,26 @@
 from rest_framework import generics
 from rest_framework.authentication import TokenAuthentication
 
+from drf_spectacular.utils import extend_schema
+
 from .models import Product
 from .serializers import ProductDetailsSerializer, ProductGeneralSerializer
 from .permissions import IsSellerOrReadOnly, IsSellerOwnerOrReadOnly
 
 
-class ProductsView(generics.ListCreateAPIView):
+class setSerializerByMethodMixin:
+    serializer_by_method = None
+
+    def get_serializer_class(self):
+
+        assert (
+            self.serializer_by_method is not None
+        ), f"'{self.__class__.__name__}' should include a `serializer_by_method` attribute."
+
+        return self.serializer_by_method.get(self.request.method, self.serializer_class)
+
+
+class ProductsView(setSerializerByMethodMixin, generics.ListCreateAPIView):
     authentication_classes = [TokenAuthentication]
     permission_classes = [IsSellerOrReadOnly]
 
@@ -18,9 +32,6 @@ class ProductsView(generics.ListCreateAPIView):
     def perform_create(self, serializer):
         serializer.save(seller=self.request.user)
 
-    def get_serializer_class(self):
-        return self.serializer_by_method.get(self.request.method, self.serializer_class)
-
 
 class ProductsDetailsView(generics.RetrieveUpdateAPIView):
     authentication_classes = [TokenAuthentication]
@@ -28,3 +39,7 @@ class ProductsDetailsView(generics.RetrieveUpdateAPIView):
 
     serializer_class = ProductDetailsSerializer
     queryset = Product.objects.all()
+
+    @extend_schema(exclude=True)
+    def put(self, **kwargs):
+        ...
