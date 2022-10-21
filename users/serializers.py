@@ -2,6 +2,9 @@ from rest_framework import serializers
 from .models import User
 from django.contrib.auth.hashers import make_password
 
+from drf_spectacular.utils import extend_schema_serializer
+from drf_spectacular.utils import OpenApiExample
+
 
 class AccountSerializer(serializers.ModelSerializer):
     is_seller = serializers.BooleanField(required=True)
@@ -88,6 +91,16 @@ class AccountUpdateActivitySerializer(serializers.ModelSerializer):
         ]
 
 
+@extend_schema_serializer(
+    examples=[
+        OpenApiExample(
+            "Rota de login",
+            value={"token": "string"},
+            request_only=False,
+            response_only=True,
+        )
+    ],
+)
 class LoginSerializer(serializers.ModelSerializer):
     username = serializers.CharField(write_only=True)
     password = serializers.CharField(write_only=True)

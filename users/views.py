@@ -4,6 +4,8 @@ from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAdminUser
 from django.contrib.auth import authenticate
 
+from drf_spectacular.utils import extend_schema
+
 from . import models, serializers
 from .permissions import IsOwnerOfAccount
 
@@ -14,6 +16,9 @@ class UserListCreateView(generics.ListCreateAPIView):
 
 
 class LoginView(views.APIView):
+    # apenas para complementar a documentação
+    serializer_class = serializers.LoginSerializer
+
     def post(self, request: views.Request):
         serializer = serializers.LoginSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
@@ -47,6 +52,10 @@ class UserUpdateView(generics.UpdateAPIView):
     queryset = models.User.objects.all()
     serializer_class = serializers.AccountUpdateSerializer
 
+    @extend_schema(exclude=True)
+    def put(self, **kwargs):
+        ...
+
 
 class UserUpdateActivityView(generics.UpdateAPIView):
     authentication_classes = [TokenAuthentication]
@@ -54,3 +63,7 @@ class UserUpdateActivityView(generics.UpdateAPIView):
 
     queryset = models.User.objects.all()
     serializer_class = serializers.AccountUpdateActivitySerializer
+
+    @extend_schema(exclude=True)
+    def put(self, **kwargs):
+        ...
