@@ -1,4 +1,3 @@
-from urllib import response
 from rest_framework.test import APITestCase
 from rest_framework.views import status
 from django.urls import reverse
@@ -13,8 +12,6 @@ from .mocks.user import (
     login_common_user,
     login_adm_user,
 )
-
-import ipdb
 
 
 class UserModelTest(APITestCase):
