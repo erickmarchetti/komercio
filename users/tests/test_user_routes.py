@@ -4,7 +4,7 @@ from django.urls import reverse
 
 from users.models import User
 
-from .mocks.user import (
+from mocks.user import (
     data_seller,
     data_common_user,
     data_adm_user,
