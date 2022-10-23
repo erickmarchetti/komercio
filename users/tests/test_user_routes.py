@@ -14,7 +14,7 @@ from mocks.user import (
 )
 
 
-class UserModelTest(APITestCase):
+class UserRoutesTest(APITestCase):
     @classmethod
     def setUpTestData(cls) -> None:
         cls.user_list_create_url = reverse("user_list_create")
