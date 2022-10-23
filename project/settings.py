@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
+import dj_database_url
 import os
 import dotenv
 
@@ -30,7 +31,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["komercio-s5-p1-erickmarchetti.herokuapp.com", "localhost"]
 
 
 # Application definition
@@ -101,6 +102,14 @@ DATABASES = {
         "PORT": os.getenv("POSTGRES_PORT"),
     }
 }
+
+DATABASE_URL = os.environ.get("DATABASE_URL")
+
+if DATABASE_URL:
+    db_from_env = dj_database_url.config(
+        default=DATABASE_URL, conn_max_age=500, ssl_require=True
+    )
+    DATABASES["default"].update(db_from_env)
 
 
 # Password validation
