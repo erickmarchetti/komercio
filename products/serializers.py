@@ -18,6 +18,7 @@ class ProductGeneralSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
         fields = [
+            "id",
             "description",
             "price",
             "quantity",
@@ -25,6 +26,7 @@ class ProductGeneralSerializer(serializers.ModelSerializer):
             "seller_id",
         ]
         read_only_fields = [
+            "id",
             "description",
             "price",
             "quantity",
