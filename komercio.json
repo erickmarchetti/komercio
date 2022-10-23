@@ -1,0 +1,51 @@
+[
+  {
+    "model": "users.user",
+    "pk": "8c709b60-6c58-4a9f-b50e-63095ca5eff2",
+    "fields": {
+      "password": "pbkdf2_sha256$390000$o1TZKNvuD3ocgEDI8b7IQZ$+2KKO7Wac8f7Tp8kRsDWFy9NQ9OZ1iNzX5WDNQabiuY=",
+      "last_login": null,
+      "is_superuser": false,
+      "email": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2022-10-23T14:33:02.618Z",
+      "username": "erick seller",
+      "first_name": "erick",
+      "last_name": "seller",
+      "is_seller": true,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": "b53a9720-0d52-4ffc-b854-63e9eb79b994",
+    "fields": {
+      "password": "pbkdf2_sha256$390000$JrDYff5qBiCTQSC3OTn7go$3xePmcZ3gWVU6AKO6MqEhrslvieChyrW+/ZlJYp8bNA=",
+      "last_login": null,
+      "is_superuser": true,
+      "email": "",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2022-10-23T14:32:17.398Z",
+      "username": "erick admin",
+      "first_name": "erick",
+      "last_name": "admin",
+      "is_seller": false,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": "06131504-590b-4915-b19a-9b27ba319b60",
+    "fields": {
+      "description": "Xiaomi redmi note 10 Pro cinza 6GB RAM 128GB ROM",
+      "price": "1531.38",
+      "quantity": 50,
+      "is_active": true,
+      "seller": "8c709b60-6c58-4a9f-b50e-63095ca5eff2"
+    }
+  }
+]
